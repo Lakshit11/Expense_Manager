@@ -1,0 +1,560 @@
+<Home>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.58,1)
+            # rgba : (161/255, 166/255, 169/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    GridLayout:
+        cols: 1
+
+        GridLayout:
+            cols: 1
+            padding: 15, 15
+            spacing: 20, 20
+
+            ScrollView:
+
+                Label:
+                    id: quote
+                    text: "Enter Your Username And Password to Login OR Create New Account using Sign Up Button"
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.width, None
+                    height: self.texture_size[1]
+                    color : 0, 0, 0, 1
+
+            TextInput:
+                id: username
+                hint_text: "Username"
+                multiline : False
+
+            TextInput:
+                id: password
+                hint_text: "Password"
+                password: True
+                multiline : False
+
+            RelativeLayout:
+
+                Button:
+                    size_hint: .5,.5
+                    text: "Login"
+                    font_size: "18sp"
+                    pos_hint: {"center_x": .5,"center_y": .6}
+                    on_press: root.signin(root.ids.username.text, root.ids.password.text)
+
+            GridLayout:
+                cols: 2
+                padding: 10, 10
+                spacing: 10, 0
+
+                Button:
+                    text: "Forgot Password"
+                    on_press: root.fg()
+
+                Button:
+                    text: "Sign Up"
+                    on_press: root.next()
+
+
+<SignUpScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.58,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        cols: 1
+        padding: 30,30
+        spacing: 10,10
+       
+        GridLayout:
+            
+            cols:1
+            Button:
+                halign: "left"
+                valign: "middle"
+                text: "Go Back"
+                on_press: root.goback()
+                size_hint : .10, .10
+
+        Label:
+            id: same
+            text: "Enter Username And Password Below"
+
+        TextInput:
+            id: name
+            hint_text: "Enter Username"
+            multiline : False
+
+        TextInput:
+            id: password1
+            password: True
+            hint_text: "Enter Password"
+            multiline : False
+
+        TextInput:
+            id: password2
+            password: True
+            hint_text: "Confirm Password"
+            multiline : False
+
+        Button:
+            text: "Submit"
+            on_press: root.adduser(root.ids.name.text, root.ids.password1.text, root.ids.password2.text)
+
+
+<SubmitScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.58,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        
+        cols: 1
+        padding: 30, 30
+        spacing: 10, 10
+        
+        GridLayout:
+            cols: 3
+            padding: 10, 10
+            spacing: 10, 10
+
+            Button:
+                halign: "left"
+                valign: "middle"
+                text: "Go Back"
+                on_press: root.goback()
+                size_hint : .10, .10
+
+            Button:
+                halign: "left"
+                valign: "middle"
+                text: "Clear Data"
+                on_press: root.clearData()
+                size_hint : .10, .10
+
+            Button:
+                halign: "right"
+                valign: "center"
+                text: "Logout"
+                on_press: root.home()
+                size_hint : .10, .10
+
+        ScrollView:
+
+            Label:
+                halign: "center"
+                valign: "middle"
+                id: submitex
+                text: "Click to Add Money or View or Contribute"
+                text_size: self.width, None
+                height: self.texture_size[1]
+
+        GridLayout:
+            cols: 2
+            padding: 10, 10
+            spacing: 10, 10
+
+            Button:
+                size_hint: .10, .10
+                text: "Add Expense"
+                size_hint : .10, .10
+                on_press: root.addex()
+
+            Button:
+                size_hint : .10, .10
+                font_size : '15sp'
+                text: "Split"
+                on_press: root.contribute()
+        GridLayout:
+            cols:1
+            padding: 10, 10
+            spacing: 10,10    
+            Button:
+                size_hint : .10, .10
+                text: "View Expenses"
+                on_press: root.gra()
+
+
+<ForgotScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.58,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        
+        cols: 1
+        padding: 30, 30
+        spacing: 10, 10
+        
+        GridLayout:
+            
+            cols:1
+            Button:
+                halign: "left"
+                valign: "middle"
+                text: "Go Back"
+                on_press: root.goback()
+                size_hint : .10, .10
+                
+        Label:
+            id: lbf
+            text: "Enter Username and New Password"
+
+        TextInput:
+            id: fgname
+            size_hint: .5, .5
+            hint_text: "Enter Username"
+            multiline : False
+
+        TextInput:
+            id: newp
+            size_hint: .5, .5
+            password: True
+            hint_text: "New Password"
+            multiline : False
+
+        TextInput:
+            id: confirm
+            size_hint: .5, .5
+            password: True
+            hint_text: "Confirm Password"
+            multiline : False
+
+        Button:
+            text:"Submit"
+            size_hint : .50, .50
+            on_press: root.forgot(root.ids.fgname.text, root.ids.newp.text, root.ids.confirm.text)
+
+
+<AddExpense>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.58,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        cols: 1
+        padding: 10, 10
+        spacing: 10, 10
+
+        GridLayout:
+            cols: 2
+            padding: 30, 30
+            spacing: 30, 30
+            
+            Button:
+                halign: "left"
+                valign: "middle"
+                text: "Go Back"
+                on_press: root.goback()
+                size_hint : .10, .10
+
+            Button:
+                halign: "right"
+                valign: "center"
+                text: "Logout"
+                on_press: root.home()
+                size_hint : .10, .10
+
+        Label:
+            id: expen
+            text: "Add your Expense Below"
+        
+        TextInput:
+            id:comment
+            hint_text:"Enter Comment Here"
+            multiline:False
+            size_hint: .45, .45
+
+        TextInput:
+            id: amount
+            input_filter: "int"
+            hint_text: "Enter Amount Here"
+            multiline:False
+            size_hint: .45, .45
+
+        Button:
+            text: "Add"
+            size_hint: .35, .45
+            on_press: root.addexpense(root.ids.amount.text, root.ids.comment.text)
+
+
+<ContributeScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.58,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        cols: 1
+        padding: 30, 30
+        spacing: 10, 10
+
+        GridLayout:
+            
+            cols: 2
+            padding: 30, 30
+            spacing: 30, 30
+            
+            Button:
+                text: "Go Back"
+                halign: "left"
+                valign: "middle"
+                on_press: root.goback()
+                size_hint : .10, .10
+
+            Button:
+                halign: "right"
+                valign: "center"
+                text: "Logout"
+                on_press: root.home()
+                size_hint : .10, .10
+
+        Label:
+            id: contri
+            text: "Enter The Amount And Number of People Below"
+
+        TextInput:
+            id: amount
+            size_hint: .45, .45
+            hint_text: "Enter Amount Here"
+            multiline : False
+
+        TextInput:
+            id: people
+            size_hint: .45, .45
+            hint_text: "Enter Number of people here"
+            multiline : False
+
+        Button:
+            size_hint: .5, .5
+            text: "Calculate"
+            on_press: root.calculate(root.ids.amount.text, root.ids.people.text)
+
+<ViewScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.58,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        
+        cols:1
+        padding: 30, 30
+        spacing: 30, 30
+        
+        GridLayout:
+        
+            cols:2
+            padding: 10, 10
+            spacing: 20, 20
+        
+            Button:
+                text: "Go Back"
+                halign: "left"
+                valign: "center"
+                on_press: root.goback()
+                size_hint : .10, .10
+
+            Button:
+                halign: "right"
+                valign: "center"
+                text: "Logout"
+                on_press: root.home()
+                size_hint : .10, .10
+            
+        ScrollView:
+            Label:
+                id:quote
+                text:"Select How you want to View Data"
+                halign : "center"
+                valign: "middle"
+                text_size:self.width,None
+                size_hint_y: None
+                height:self.texture_size[1]
+
+        GridLayout:
+
+            cols:2
+            padding: 10, 10
+            spacing: 10, 10
+        
+            Button:
+                text:"Daily Expenses"
+                size_hint : .10, .10
+                on_press: root.viewdata()
+        
+            Button:
+                text:"Graph"
+                size_hint : (.10, .10)
+                on_press: root.viewgraph()
+        GridLayout:
+            
+            cols:1
+            padding: 10, 10
+            spacing: 10, 10
+
+            Button:
+                text:"View With Comments"
+                size_hint : .10, .10
+                on_press: root.viewcomments()
+
+<CommentScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.58,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        
+        cols:1
+        padding: 30, 30
+        spacing: 30, 30
+        
+        GridLayout:
+        
+            cols:2
+            padding: 10, 10
+            spacing: 10, 10
+        
+            Button:
+                text: "Go Back"
+                halign: "left"
+                valign: "center"
+                on_press: root.goback()
+                size_hint : .10, .10
+
+            Button:
+                halign: "right"
+                valign: "center"
+                text: "Logout"
+                on_press: root.home()
+                size_hint : .10, .10
+            
+        ScrollView:
+            Label:
+                id:quote
+                text:"Enter Date for which you want Data"
+                halign : "center"
+                valign: "middle"
+                text_size:self.width,None
+                size_hint_y: None
+                height:self.texture_size[1]
+
+        TextInput:
+            id : date
+            hint_text : "Enter Date (eg. 8/11 for 11th August)"
+            size_hint : (.2, None)
+            height : 70
+            multiline : False
+
+        Button:
+            text:"View"
+            size_hint : (.30, .60)
+            on_press : root.viewcomments(root.ids.date.text)
+
+
+<ClearScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.58,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        
+        cols:1
+        padding: 30, 30
+        spacing: 10, 10
+
+        GridLayout:
+            
+            cols:2
+            padding: 30, 30
+            spacing: 30, 30
+
+            Button:
+                text: "Go Back"
+                halign: "left"
+                valign: "center"
+                on_press: root.goback()
+                size_hint : .10, .10
+
+            Button:
+                halign: "right"
+                valign: "center"
+                text: "Logout"
+                on_press: root.home()
+                size_hint : .10, .10
+        
+        Label:
+            id:cleardata
+            text : "Are you sure you want to clear data?"
+        
+        TextInput:
+            id:usid
+            size_hint : 0.50, 0.50
+            hint_text : "Enter Username Here"
+            multiline : False
+
+        TextInput:
+            id:pid
+            password : True
+            size_hint : 0.50, 0.50
+            hint_text : "Enter Password Here"
+            multiline : False
+
+        Button:
+            text : "Submit"
+            size_hint : .5, .5
+            on_press : root.clear(root.ids.usid.text, root.ids.pid.text)
+
+<RootWidget>
+
+    Home:
+        name: "Home_Screen"
+    SignUpScreen:
+        name: "SignUp_Screen"
+    SubmitScreen:
+        name: "Submit_Screen"
+    ForgotScreen:
+        name: "Forgot_Screen"
+    AddExpense:
+        name: "Add_Expense"
+    ContributeScreen:
+        name: "Contribute_Screen"
+    ViewScreen:
+        name: "View_Screen"
+    ClearScreen:
+        name : "Clear_Screen"
+    CommentScreen:
+        name : "Comment_Screen"
+
+
+<Button>
+    opacity: 1 if self.state == "normal" else .5
+    background_color: 0, 0, 0, 1
+
+<Label>
+    color : 1, 1, 1, 1
