@@ -1,0 +1,717 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import Gradient kivy_gradient.Gradient
+<Home>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.63,1)
+            # rgba:( 0.1, 0.1, 0.1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            texture: Gradient.vertical(get_color_from_hex("#215959"), get_color_from_hex("#3EB1B1"), get_color_from_hex("#A9DEDE"))
+    GridLayout:
+        cols: 1
+        
+        ActionBar:
+            size:root.width, 200
+            pos :0,550
+            background_image: ''
+            background_color: (33/255, 89/255, 89/255, 1)
+            ActionView:
+                ActionPrevious:
+                    title: "Expense Manager"
+                    font_size: "20sp"
+                    with_previous: False
+                    app_icon: 'icon.png'
+                    app_icon_height: 40
+                    app_icon_width: 40
+        GridLayout:
+            cols: 1
+            padding: 20, 20
+            spacing: 20, 20
+
+            ScrollView:
+
+                Label:
+                    id: quote
+                    text: "Enter Your Username And Password to Login OR Create New Account using Sign Up Button"
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.width, None
+                    height: self.texture_size[1]
+
+            GridLayout:
+                cols: 1
+                spacing: 30, 30
+                padding: 60, 60
+
+                MDTextFieldRound:
+                    id: username
+                    icon_left: 'email'
+                    size_hint: (0.8, 0.6)
+                    hint_text: "Username"
+                    multiline : False
+                    normal_color: (1, 1, 1,1)
+                    color_active: (1, 1, 1, 1)
+
+                MDTextFieldRound:
+                    id: password
+                    size_hint: (0.8, 0.6)
+                    hint_text: "Password"
+                    password: True
+                    multiline : False
+                    icon_left: 'key-variant'
+                    normal_color: (1, 1, 1, 1)
+                    color_active: (1, 1, 1, 1)
+
+            RelativeLayout:
+                MDFlatButton:
+                    size_hint: (.6,.6)
+                    text: 'Forgot Password?'
+                    pos_hint:{'center_x':0.8, 'center_y':0.6}
+                    on_release: root.fg()
+
+            RelativeLayout:
+
+                MDRoundFlatButton:
+                    size_hint: (0.6,0.3)
+                    text: "Login"
+                    pos_hint: {"center_x": .5,"center_y": .5}
+                    on_release: root.signin(root.ids.username.text, root.ids.password.text)
+
+
+            GridLayout:
+                cols: 2
+                padding: 10, 10
+                spacing: 10, 10
+
+                RelativeLayout:
+            
+                    MDFloatingActionButton:
+                        icon: "account-plus"
+                        pos_hint: {'center_x':0.95, 'center_y':0.3}
+                        md_bg_color: get_color_from_hex("#168C7C")
+                        on_release: root.next()
+
+
+<SignUpScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.63,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            texture: Gradient.vertical(get_color_from_hex("#215959"), get_color_from_hex("#3EB1B1"), get_color_from_hex("#A9DEDE"))
+
+    GridLayout:
+        cols:1
+        ActionBar:
+            size:root.width, 200
+            pos :0,550
+            background_image: ''
+            background_color: (33/255, 89/255, 89/255, 1)
+            ActionView:
+                ActionPrevious:
+                    title: "Sign Up"
+                    app_icon: 'icon.png'
+                    app_icon_height: 40
+                    app_icon_width: 40
+                    on_press: root.goback()
+    GridLayout:
+        cols: 1
+        padding: 20,20
+        spacing: 20,20
+
+        Label:
+            id: same
+            text: "Enter Username And Password Below"
+
+        GridLayout:
+            cols: 1
+            spacing: 30, 30
+            padding: 80, 80
+
+            MDTextFieldRound:
+                id: name
+                hint_text: "Enter Username"
+                size_hint: (0.6, 0.4)
+                multiline : False
+                icon_left: 'email'
+                normal_color: (1, 1, 1, 1)
+                color_active: (1, 1, 1, 1)
+
+            MDTextFieldRound:
+                id: password1
+                password: True
+                icon_left: 'key-variant'
+                size_hint: (0.6, 0.4)
+                hint_text: "Enter Password"
+                multiline : False
+                normal_color: (1, 1, 1, 1)
+                color_active: (1, 1, 1, 1)
+                
+            MDTextFieldRound:
+                id: password2
+                icon_left: 'key-variant'
+                password: True
+                size_hint: (0.6, 0.4)
+                hint_text: "Confirm Password"
+                multiline : False
+                normal_color: (1, 1, 1, 1)
+
+        RelativeLayout:
+            MDRoundFlatButton:
+                text: "Submit"
+                size_hint: (0.6, 0.3)
+                pos_hint: {'center_x':0.5,'center_y':0.5}
+                on_release: root.adduser(root.ids.name.text, root.ids.password1.text, root.ids.password2.text)
+
+
+<SubmitScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.63,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            texture: Gradient.vertical(get_color_from_hex("#215959"), get_color_from_hex("#3EB1B1"), get_color_from_hex("#A9DEDE"))
+
+    GridLayout:
+        cols:1
+        ActionBar:
+            size:root.width, 200
+            pos :0,550
+            background_image: ''
+            background_color: (33/255, 89/255, 89/255, 1)
+            ActionView:
+                ActionPrevious:
+                    title: "Expense Manager"
+                    on_press: root.goback()
+                    app_icon: 'icon.png'
+                    app_icon_height: 40
+                    app_icon_width: 40
+
+                ActionButton:
+                    text: "Clear Data"
+                    on_press: root.clearData()
+                ActionButton:
+                    text:"Logout"
+                    on_press: root.home()
+
+    GridLayout:
+        
+        cols: 1
+        padding: 20, 20
+        spacing: 20, 20
+        
+        GridLayout:
+            cols: 1
+            padding: 10, 10
+            spacing: 10, 10
+        ScrollView:
+
+            Label:
+                halign: "center"
+                valign: "middle"
+                id: submitex
+                text: "Click to Add Money or View or Contribute"
+                text_size: self.width, None
+                height: self.texture_size[1]
+
+        ElementCard:
+            image:'add_image.png'
+            text: "Add Expenses"
+            on_release:root.addex()
+        ElementCard:
+            image:'split.png'
+            text: "Split Expenses"
+            on_release:root.contribute()
+        ElementCard:
+            image:'view.png'
+            text: "View Expenses"
+            on_release:root.gra()
+
+<ForgotScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.63,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            texture: Gradient.vertical(get_color_from_hex("#215959"), get_color_from_hex("#3EB1B1"), get_color_from_hex("#A9DEDE"))
+
+    GridLayout:
+        cols:1
+        ActionBar:
+            size:root.width, 200
+            pos :0,550
+            background_image: ''
+            background_color: (33/255, 89/255, 89/255, 1)
+            ActionView:
+                ActionPrevious:
+                    title: "Forgot Password?"
+                    on_press: root.goback()
+                    app_icon: 'icon.png'
+                    app_icon_height: 40
+                    app_icon_width: 40
+
+    GridLayout:
+        
+        cols: 1
+        padding: 20, 20
+        spacing: 20, 20
+
+        Label:
+            id: lbf
+            text: "Enter Username and New Password"
+
+        GridLayout:
+            cols: 1
+            spacing: 30, 30
+            padding: 80, 80
+
+            MDTextFieldRound:
+                id: fgname
+                size_hint: (0.6, 0.4)
+                hint_text: "Enter Username"
+                multiline : False
+                normal_color: (1, 1, 1, 1)
+                icon_left: 'email'
+                color_active: (1, 1, 1, 1)
+
+            MDTextFieldRound:
+                id: newp
+                size_hint: (0.6, 0.4)
+                password: True
+                hint_text: "New Password"
+                multiline : False
+                icon_left: 'key-variant'
+                normal_color: (1, 1, 1, 1)
+                color_active: (1, 1, 1, 1)
+
+            MDTextFieldRound:
+                id: confirm
+                size_hint: (0.6, 0.4)
+                password: True
+                hint_text: "Confirm Password"
+                multiline : False
+                icon_left: 'key-variant'
+                normal_color: (1, 1, 1, 1)
+                color_active: (1, 1, 1, 1)
+
+        RelativeLayout:
+            cols:1
+            MDRoundFlatButton:
+                text:"Submit"
+                size_hint : (0.6, 0.3)
+                pos_hint:{'center_x':0.5, 'center_y':0.5}
+                on_release: root.forgot(root.ids.fgname.text, root.ids.newp.text, root.ids.confirm.text)
+
+
+<AddExpense>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.63,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            texture: Gradient.vertical(get_color_from_hex("#215959"), get_color_from_hex("#3EB1B1"), get_color_from_hex("#A9DEDE"))
+
+    GridLayout:
+        cols:1
+        ActionBar:
+            size:root.width, 200
+            pos :0,550
+            background_image: ''
+            background_color: (33/255, 89/255, 89/255, 1)
+            ActionView:
+                ActionPrevious:
+                    title: "Add Expenses"
+                    on_press: root.goback()
+                    app_icon: 'icon.png'
+                    app_icon_height: 40
+                    app_icon_width: 40
+
+                ActionButton:
+                    text:"Logout"
+                    on_press: root.home()
+    GridLayout:
+        cols: 1
+        padding: 20, 20
+        spacing: 20, 20
+
+        GridLayout:
+            cols: 1
+
+        Label:
+            id: expen
+            text: "Add your Expense Below"
+
+        GridLayout:
+            cols: 1
+            spacing: 30, 30
+            padding: 80, 80
+
+            MDTextFieldRound:
+                id:comment
+                size_hint: (0.6, 0.4)
+                icon_left: 'comment-text'
+                normal_color: (1, 1, 1, 1)
+                color_active: (1, 1, 1, 1)
+                hint_text:"Enter Comment Here"
+                multiline:False
+
+            MDTextFieldRound:
+                id: amount
+                size_hint: (0.6, 0.4)
+                icon_left: 'account-cash'
+                normal_color: (1, 1, 1, 1)
+                color_active: (1, 1, 1, 1)
+                input_filter: "int"
+                hint_text: "Enter Amount Here"
+                multiline:False
+
+        RelativeLayout:
+            MDRoundFlatButton:
+                text: "Add"
+                pos_hint:{'center_x':0.5, 'center_y':0.7}
+                size_hint: (0.6, 0.3)
+                on_release: root.addexpense(root.ids.amount.text, root.ids.comment.text)
+
+
+<ContributeScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.63,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            texture: Gradient.vertical(get_color_from_hex("#215959"), get_color_from_hex("#3EB1B1"), get_color_from_hex("#A9DEDE"))
+
+    GridLayout:
+        cols:1
+        ActionBar:
+            size:root.width, 200
+            pos :0,550
+            background_image: ''
+            background_color: (33/255, 89/255, 89/255, 1)
+            ActionView:
+                ActionPrevious:
+                    title: "Split Expenses"
+                    on_press: root.goback()
+                    app_icon: 'icon.png'
+                    app_icon_height: 40
+                    app_icon_width: 40
+
+                ActionButton:
+                    text:"Logout"
+                    on_press: root.home()
+    GridLayout:
+        cols: 1
+        padding: 20, 20
+        spacing: 20, 20
+
+        GridLayout:
+            cols: 1
+
+        Label:
+            id: contri
+            text: "Enter The Amount And Number of People Below"
+
+        GridLayout:
+            cols: 1
+            spacing: 30, 30
+            padding: 80, 80
+
+            MDTextFieldRound:
+                id: amount
+                size_hint: (0.6, 0.4)
+                icon_left: 'account-cash'
+                normal_color: (1, 1, 1, 1)
+                color_active: (1, 1, 1, 1)
+                input_filter: "int"
+                hint_text: "Enter Amount Here"
+                multiline : False
+
+            MDTextFieldRound:
+                id: people
+                size_hint: (0.6, 0.4)
+                icon_left: 'account-multiple'
+                normal_color: (1, 1, 1, 1)
+                color_active: (1, 1, 1, 1)
+                input_filter: "int"
+                hint_text: "Enter Number of people here"
+                multiline : False
+
+        RelativeLayout:
+            MDRoundFlatButton:
+                size_hint: (0.6, 0.3)
+                pos_hint:{'center_x':0.5, 'center_y':0.7}
+                text: "Calculate"
+                on_release: root.calculate(root.ids.amount.text, root.ids.people.text)
+
+<ViewScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.63,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            texture: Gradient.vertical(get_color_from_hex("#215959"), get_color_from_hex("#3EB1B1"), get_color_from_hex("#A9DEDE"))
+
+    GridLayout:
+        cols:1
+        ActionBar:
+            size:root.width, 200
+            pos :0,550
+            background_image: ''
+            background_color: (33/255, 89/255, 89/255, 1)
+            ActionView:
+                ActionPrevious:
+                    title: "View Expenses"
+                    on_press: root.goback()
+                    app_icon: 'icon.png'
+                    app_icon_height: 40
+                    app_icon_width: 40
+
+                ActionButton:
+                    text:"Logout"
+                    on_press: root.home()
+    GridLayout:
+        
+        cols:1
+        padding: 20, 20
+        spacing: 20, 20
+        
+        
+        GridLayout:
+        
+            cols:1
+            padding: 10, 10
+            spacing: 10, 10
+            
+        ScrollView:
+            Label:
+                id:quote
+                text:"Select How you want to View Data"
+                halign : "center"
+                valign: "middle"
+                text_size:self.width,None
+                size_hint_y: None
+                height:self.texture_size[1]
+
+        ElementCard:
+            image:'daily.png'
+            text: "Daily Expenses"
+            on_release:root.viewdata()
+        ElementCard:
+            image:'graph.png'
+            text: "Graph"
+            on_release:root.viewgraph()
+        ElementCard:
+            image:'comment.png'
+            text: "View with Comments"
+            on_release:root.viewcomments()
+
+<CommentScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.63,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            texture: Gradient.vertical(get_color_from_hex("#215959"), get_color_from_hex("#3EB1B1"), get_color_from_hex("#A9DEDE"))
+
+    GridLayout:
+        cols:1
+        ActionBar:
+            size:root.width, 200
+            pos :0,550
+            background_image: ''
+            background_color: (33/255, 89/255, 89/255, 1)
+            ActionView:
+                ActionPrevious:
+                    title: "View Comments"
+                    on_press: root.goback()
+                    app_icon: 'icon.png'
+                    app_icon_height: 40
+                    app_icon_width: 40
+
+                ActionButton:
+                    text:"Logout"
+                    on_press: root.home()
+    GridLayout:
+        
+        cols:1
+        padding: 20, 20
+        spacing: 20, 20
+        
+        GridLayout:
+        
+            cols:1
+                
+        ScrollView:
+            Label:
+                id:quote
+                text:"Enter Date for which you want Data"
+                halign : "center"
+                valign: "middle"
+                text_size:self.width,None
+                size_hint_y: None
+                height:self.texture_size[1]
+
+        MDTextFieldRound:
+            id : date
+            icon_left: 'calendar-today'
+            # (width, height)
+            size_hint: (0.4, 0.2)
+            normal_color: (1, 1, 1, 1)
+            color_active: (1 , 1, 1, 1)
+            hint_text : "Enter Date(Foramt: DD-M-YYYY)"
+            multiline : False
+
+        RelativeLayout:
+            MDRoundFlatButton:
+                text:"View"
+                size_hint : (0.6, 0.3)
+                pos_hint:{'center_x':0.5, 'center_y':0.5}
+                on_press : root.viewcomments(root.ids.date.text)
+
+
+<ClearScreen>:
+    canvas.before:
+        Color:
+            rgba:(0.12,0.59,0.63,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            texture: Gradient.vertical(get_color_from_hex("#215959"), get_color_from_hex("#3EB1B1"), get_color_from_hex("#A9DEDE"))
+
+    GridLayout:
+        cols:1
+        ActionBar:
+            size:root.width, 200
+            pos :0,550
+            background_image: ''
+            background_color: (33/255, 89/255, 89/255, 1)
+            ActionView:
+                ActionPrevious:
+                    title: "Clear Expenses"
+                    on_press: root.goback()
+                    app_icon: 'icon.png'
+                    app_icon_height: 40
+                    app_icon_width: 40
+
+                ActionButton:
+                    text:"Logout"
+                    on_press: root.home()
+    GridLayout:
+        cols:1
+        padding: 20, 20
+        spacing: 20, 20
+
+        GridLayout:
+            cols:1
+
+        Label:
+            id:cleardata
+            text : "Are you sure you want to clear data?"
+        
+        GridLayout:
+            cols: 1
+            spacing: 30, 30
+            padding: 80, 80
+
+            MDTextFieldRound:
+                id:usid
+                icon_left: 'email'
+                normal_color: (1, 1, 1, 1)
+                color_active: (1, 1, 1, 1)
+                size_hint : (0.6, 0.4)
+                hint_text : "Enter Username Here"
+                multiline : False
+
+            MDTextFieldRound:
+                id:pid
+                icon_left: 'key-variant'
+                normal_color: (1, 1, 1, 1)
+                color_active: (1, 1, 1, 1) 
+                password : True
+                size_hint : (0.6, 0.4)
+                hint_text : "Enter Password Here"
+                multiline : False
+
+        RelativeLayout:
+            MDRoundFlatButton:
+                text : "Submit"
+                size_hint : (0.5,0.4)
+                pos_hint:{'center_x':0.5, 'center_y':0.7}
+                on_release : root.clear(root.ids.usid.text, root.ids.pid.text)
+
+<RootWidget>
+
+    Home:
+        name: "Home_Screen"
+    SignUpScreen:
+        name: "SignUp_Screen"
+    SubmitScreen:
+        name: "Submit_Screen"
+    ForgotScreen:
+        name: "Forgot_Screen"
+    AddExpense:
+        name: "Add_Expense"
+    ContributeScreen:
+        name: "Contribute_Screen"
+    ViewScreen:
+        name: "View_Screen"
+    ClearScreen:
+        name : "Clear_Screen"
+    CommentScreen:
+        name : "Comment_Screen"
+
+
+<Button>
+    opacity: 1 if self.state == "normal" else .5
+    background_image: ''
+    background_color: (33/255, 89/255, 89/255, 0.5)
+
+<MDRoundFlatButton>
+    line_color: (1, 1, 1, 1)
+    text_color: (1, 1, 1, 1)
+    font_size: '20sp'
+
+<Label>
+    color : 1, 1, 1, 1
+
+<MDTextFieldRound>
+    normal_color: (1, 1, 1, 1)
+    color_active: (1, 1, 1, 1)
+
+<ElementCard@MDCard>
+    md_bg_color:get_color_from_hex("#4FAFAF")
+    padding:dp(15)
+    spacing:dp(15)
+    radius:dp(25)
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+    size_hint: (0, 0.8)
+    
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_style:"H6"
+        MDLabel:
+            halign:"center"
+            font_style:"Caption"
+            text:root.subtext
+        MDLabel:
+            halign:"center"
+            text:root.items_count
